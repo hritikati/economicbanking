@@ -1,0 +1,204 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 700px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    flex: 1;
+}
+
+h1, h2, h3 {
+    text-align: center;
+}
+h1 {
+    color: #1d36d7;
+}
+
+.logo {
+    display: block;
+    margin: 20px auto;
+    max-width: 150px;
+    height: auto;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+p {
+    font-size: 24px;  /* Increase font size */
+    font-weight: bold; /* Make text bold */
+    text-align: center; /* Center the text */
+    margin-bottom: 10px; /* Add spacing */
+    color: #ec0606;
+}
+
+
+button {
+    padding: 10px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #218838;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+td:last-child {
+    text-align: center;
+}
+a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.delete {
+    background: #dc3545;
+    
+
+}
+
+.delete:hover {
+    background: #c82333;
+}
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.container {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+#searchBox {
+    width: 70%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    padding: 5px;
+    background: #f4f4f4;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+form input, form select, form button {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 8px;
+}
+
+form button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #218838;
+}
+#detailsList {
+    font-size: 18px;  /* Increase font size */
+    font-weight: bold; /* Make text bold */
+    text-align: center; /* Center align */
+}
+
+#detailsList li {
+    font-size: 18px;  /* Ensure list items are bigger */
+    padding: 8px;  /* Add spacing for readability */
+    background: #f4f4f4;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+.calendar-date {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    display: inline-block;
+    margin: 2px;
+    line-height: 40px;
+    font-size: 14px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.today {
+    background-color: #6dbfda !important; /* Light Blue for today */
+    font-weight: bold;
+}
+
+@keyframes blink {
+    50% { opacity: 0.2; }
+}
+
+.event-day {
+    background-color: #e40404 !important; /* Light Red for event dates */
+    font-weight: bold;
+    animation: blink 1s infinite alternate; /* Add blinking animation */
+}
+
+
+
+
+
+
+
+

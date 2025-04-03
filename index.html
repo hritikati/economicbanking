@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Data Entry</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>STATE BANK OF INDIA</h1>
+        <h2>Ecosystem Banking</h2>
+        <img src="logo.png" alt="Logo" class="logo">
+
+        <form id="dataForm">
+            <input type="text" id="name" placeholder="Enter Name" required>
+            
+            <button type="submit">Add Entry</button>
+        </form>
+        <input type="text" id="searchBox" placeholder="Search by Name">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="dataList"></tbody>
+        </table>
+        <h2>Event Calendar</h2>
+        <div id="calendar"></div>
+
+        <h2>All Scheduled Events</h2>
+        <div id="eventDetails"></div>
+
+
+
+
+
+    </div>
+    <script src="script.js"></script>
+    <footer>
+        Rohit Kumar
+        <br>Manager, SBI
+    </footer>
+    
+</body>
+</html>
