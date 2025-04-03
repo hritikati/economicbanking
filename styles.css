@@ -194,6 +194,39 @@ form button:hover {
     font-weight: bold;
     animation: blink 1s infinite alternate; /* Add blinking animation */
 }
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 10px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 5px;
+    }
+
+    input, button {
+        width: 100%;
+    }
+
+    .calendar-section, .fields-section {
+        width: 100%;
+    }
+
+    .calendar-date {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 12px;
+    }
+
+    h1, h2 {
+        font-size: 18px;
+    }
+}
 
 
 
