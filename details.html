@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entry Details</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main-content">
+        <div class="left-section">
+        <h1>Entry Details</h1>
+        <p><strong>Name:</strong> <span id="entryName"></span></p>
+
+        <div class="details-content">
+            <div class="fields-section">
+                <h2>Add Custom Fields</h2>
+                <form id="customFieldForm">
+                    <input type="text" id="fieldName" placeholder="Field Name" required>
+                    <input type="text" id="fieldValue" placeholder="Field Value" required>
+                    <input type="text" id="walletShareValue" placeholder="Enter SBI Wallet Share" required>
+                    <button type="submit">Add Field</button>
+                </form>
+
+                <h2>Saved Details</h2>
+                <table id="detailsList">
+                    <thead>
+                        <tr>
+                            <th>Field Name</th>
+                            <th>Field Value</th>
+                            <th>SBI Wallet Share</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                
+
+                <h2>Edit Field</h2>
+                <form id="editFieldForm">
+                    <select id="editFieldName" required></select>
+                    <input type="text" id="editFieldValue" placeholder="New Field Value" required />
+                    <input type="text" id="editWalletShare" placeholder="New SBI Wallet Share" required />
+                    <button type="submit">Update Field</button>
+                </form>
+                
+            </div>
+
+            <!-- Calendar Section -->
+            <div class="calendar-section">
+                <h2>Add Event</h2>
+<form id="eventForm">
+    <input type="date" id="eventDate" required>
+    <input type="text" id="eventDescription" placeholder="Event Description" required>
+    <button type="submit">Add Event</button>
+</form>
+
+<h2>Scheduled Events</h2>
+<ul id="eventList"></ul>
+
+            </div>
+        </div>
+
+        <a href="index.html">Back to Home</a>
+    </div>
+</div>
+</div>
+
+    <script src="details.js"></script>
+    <footer>
+        Rohit Kumar<br>
+Manager & Nodal Officer Ecosystem Banking.
+State Bank Of India,Industrial Finance Branch.
+Andheri East,Mumbai.
+    </footer>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Data Entry</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main-content">
+        <div class="left-section">
+        <h1>STATE BANK OF INDIA</h1>
+        <h2>Ecosystem Banking</h2>
+        <img src="logo.png" alt="Logo" class="logo">
+
+        <form id="dataForm">
+            <input type="text" id="name" placeholder="Enter Name" required>
+            
+            <button type="submit">Add Customer</button>
+        </form>
+        <input type="text" id="searchBox" placeholder="Search by Name">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="dataList"></tbody>
+        </table>
+        </div>
+        <div class="right-section">
+            <div class="calendar-wrapper">
+                <h2 id="calendarMonthYear"></h2>
+                <div id="calendarHeader" style="text-align: center;">
+                    <div id="calendarMonthYear" style="font-size: 20px; font-weight: bold; margin-bottom: 10px;"></div>
+                    <div id="calendarControls">
+                      <button id="prevMonthBtn" class="calendar-btn no-bg">⬅️</button>
+                      <button id="nextMonthBtn" class="calendar-btn">➡️</button>
+                    </div>
+                  </div>
+                  
+                  
+                  
+                 <!-- Month and Year display -->
+                <div id="calendar"></div>
+                <h2>All Scheduled Events</h2>
+                <div id="eventDetails"></div>
+            </div>
+            
+    </div>
+    </div>
+
+    
+    <script src="script.js"></script>
+    <footer>
+        Rohit Kumar<br>
+Manager & Nodal Officer Ecosystem Banking.
+State Bank Of India,Industrial Finance Branch.
+Andheri East,Mumbai.
+    </footer>
+    
+</body>
+</html>
