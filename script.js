@@ -7,56 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const monthYearLabel = document.getElementById("calendarMonthYear");
     const nextMonthBtn = document.getElementById("nextMonthBtn");
     const prevMonthBtn = document.getElementById("prevMonthBtn");
-    document.addEventListener("DOMContentLoaded", function () {
-        const openModalButton = document.getElementById("openAchievementModal");
-        const closeModalButton = document.getElementById("closeAchievementModal");
-        const achievementModal = document.getElementById("achievementModal");
-        const achievementForm = document.getElementById("achievementForm");
-        const achievementTableBody = document.querySelector("#achievementTable tbody");
-    
-        // Open the modal
-        openModalButton.addEventListener("click", function () {
-            achievementModal.showModal();
-            loadAchievements();
-        });
-    
-        // Close the modal
-        closeModalButton.addEventListener("click", function () {
-            achievementModal.close();
-        });
-    
-        // Handle form submission
-        achievementForm.addEventListener("submit", function (event) {
-            event.preventDefault();
-            const date = document.getElementById("achievementDate").value;
-            const value = document.getElementById("achievementValue").value;
-    
-            if (date && value) {
-                saveAchievement(date, value);
-                loadAchievements();
-                achievementForm.reset();
-            }
-        });
-    
-        // Save achievement to localStorage
-        function saveAchievement(date, value) {
-            const achievements = JSON.parse(localStorage.getItem("achievements")) || [];
-            achievements.push({ date, value });
-            localStorage.setItem("achievements", JSON.stringify(achievements));
-        }
-    
-        // Load achievements from localStorage and display them
-        function loadAchievements() {
-            achievementTableBody.innerHTML = "";
-            const achievements = JSON.parse(localStorage.getItem("achievements")) || [];
-            achievements.forEach(achievement => {
-                const row = document.createElement("tr");
-                row.innerHTML = `<td>${achievement.date}</td><td>${achievement.value}</td>`;
-                achievementTableBody.appendChild(row);
-            });
-        }
-    });
-    
 
     let entries = JSON.parse(localStorage.getItem("entries")) || [];
     let currentDate = new Date();
@@ -200,15 +150,54 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function showEventDetails(date) {
         const allEvents = getAllEvents();
-        eventDetails.innerHTML = `<h3>Events on ${date}</h3>`;
+        eventDetails.innerHTML = "";
+    
         if (allEvents[date]) {
+            let serial = 1;
+    
+            const heading = document.createElement("h3");
+            heading.textContent = `Events on ${date}`;
+            eventDetails.appendChild(heading);
+    
+            // Wrapper for scrollable table
+            const wrapper = document.createElement("div");
+            wrapper.style.overflowX = "auto";
+            wrapper.style.width = "100%";
+    
+            const table = document.createElement("table");
+            table.style.width = "100%";
+            table.style.borderCollapse = "collapse";
+            table.style.boxSizing = "border-box";
+            table.innerHTML = `
+                <thead>
+                    <tr style="background-color: #f0f0f0;">
+                        <th style="border: 1px solid #ccc; padding: 8px; min-width: 60px;">S.No</th>
+                        <th style="border: 1px solid #ccc; padding: 8px; min-width: 120px;">Name</th>
+                        <th style="border: 1px solid #ccc; padding: 8px; min-width: 200px;">Event</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            `;
+    
+            const tbody = table.querySelector("tbody");
+    
             allEvents[date].forEach(event => {
-                eventDetails.innerHTML += `<p><strong>${event.name}:</strong> ${event.event}</p>`;
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td style="border: 1px solid #ccc; padding: 8px;">${serial++}</td>
+                    <td style="border: 1px solid #ccc; padding: 8px;">${event.name}</td>
+                    <td style="border: 1px solid #ccc; padding: 8px;">${event.event}</td>
+                `;
+                tbody.appendChild(row);
             });
+    
+            wrapper.appendChild(table);
+            eventDetails.appendChild(wrapper);
         } else {
             eventDetails.innerHTML = "<p>No events on this day.</p>";
         }
     }
+    
 
     nextMonthBtn.addEventListener("click", function () {
         currentDate.setMonth(currentDate.getMonth() + 1);
@@ -221,6 +210,7 @@ document.addEventListener("DOMContentLoaded", function () {
         displayCalendar();
         eventDetails.innerHTML = ""; // Clear event details when navigating
     });
+    
 
     // Init
     displayEntries();
