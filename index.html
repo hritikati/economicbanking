@@ -14,14 +14,32 @@
         <img src="logo.png" alt="Logo" class="logo">
 
         <form id="dataForm">
-            <input type="text" id="name" placeholder="Enter Name" required>
-            
-            <button type="submit">Add Customer</button>
-            
+            <div class="customer-actions">
+                <input type="text" id="nameInput" placeholder="Enter Name">
+                <button id="addBtn">Add Customer</button>
+                <input type="text" id="searchBox" placeholder="Search by Name">
+            </div>
             
         </form>
-        <input type="text" id="searchBox" placeholder="Search by Name">
-
+        <div class="activity-form">
+            <form id="activityForm">
+                <input type="date" id="activityDate" required>
+                <input type="text" id="companyName" placeholder="Company Name" required>
+                <input type="text" id="activityDesc" placeholder="Activity" required>
+                <button type="submit">Add Activity</button>
+            </form>
+        </div>
+        
+        <!-- New calendar and activity table -->
+        <div id="activityCalendarWrapper">
+            <div class="calendar-header">
+                <button id="prevActivityMonthBtn">&lt;</button>
+                <div id="activityCalendarMonthYear"></div>
+                <button id="nextActivityMonthBtn">&gt;</button>
+            </div>
+            <div id="activityCalendar" class="calendar"></div>
+            <div id="activityTableContainer"></div>
+        </div>
         <table>
             <thead>
                 <tr>
