@@ -210,6 +210,172 @@ document.addEventListener("DOMContentLoaded", function () {
         displayCalendar();
         eventDetails.innerHTML = ""; // Clear event details when navigating
     });
+    let activityData = JSON.parse(localStorage.getItem("activityData")) || {};
+
+document.getElementById("activityForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const date = document.getElementById("activityDate").value;
+    const company = document.getElementById("companyName").value.trim();
+    const activity = document.getElementById("activityDesc").value.trim();
+
+    if (!activityData[date]) {
+        activityData[date] = [];
+    }
+
+    activityData[date].push({ company, activity });
+    localStorage.setItem("activityData", JSON.stringify(activityData));
+    this.reset();
+    updateActivityCalendar();
+});
+
+// Activity Calendar
+let currentActivityMonth = new Date().getMonth();
+let currentActivityYear = new Date().getFullYear();
+
+function updateActivityCalendar() {
+    const calendar = document.getElementById("activityCalendar");
+    const header = document.getElementById("activityCalendarMonthYear");
+
+    const firstDay = new Date(currentActivityYear, currentActivityMonth, 1);
+    const lastDate = new Date(currentActivityYear, currentActivityMonth + 1, 0).getDate();
+    const todayStr = new Date().toISOString().split("T")[0];
+
+    header.textContent = `${firstDay.toLocaleString("default", { month: "long" })} ${currentActivityYear}`;
+    calendar.innerHTML = "";
+
+    for (let i = 1; i <= lastDate; i++) {
+        const dateStr = `${currentActivityYear}-${String(currentActivityMonth + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
+
+        const cell = document.createElement("div");
+        cell.classList.add("calendar-date");
+        cell.dataset.date = dateStr;
+        cell.textContent = i;
+
+        if (activityData[dateStr]) {
+            cell.classList.add("activity-date");
+        }
+
+        calendar.appendChild(cell);
+    }
+
+    document.querySelectorAll("#activityCalendar .calendar-date").forEach(cell => {
+        cell.addEventListener("click", () => {
+            const clickedDate = cell.dataset.date;
+            showActivitiesForDate(clickedDate);
+        });
+    });
+}
+
+function showActivitiesForDate(date) {
+    const container = document.getElementById("activityTableContainer");
+    container.innerHTML = "";
+
+    const activities = activityData[date];
+    if (!activities || activities.length === 0) {
+        const noActivityMessage = document.createElement("p");
+        noActivityMessage.textContent = "No activities for this date.";
+        noActivityMessage.classList.add("no-activity-message");
+        container.appendChild(noActivityMessage);
+        return;
+    }
+
+    const wrapper = document.createElement("div");
+    wrapper.id = "activityPrintSection";
+
+    const table = document.createElement("table");
+    table.innerHTML = `
+        <thead>
+            <tr><th>Date</th><th>S.No</th><th>Company</th><th>Activity</th></tr>
+        </thead>
+        <tbody>
+            ${activities.map((item, index) => `
+                <tr>
+                    <td>${date}</td>
+                    <td>${index + 1}</td>
+                    <td>${item.company}</td>
+                    <td>${item.activity}</td>
+                </tr>
+            `).join('')}
+        </tbody>
+    `;
+    wrapper.appendChild(table);
+
+    // Add Print Button
+    const printBtn = document.createElement("button");
+    printBtn.textContent = "Print as PDF";
+    printBtn.style.marginTop = "10px";
+    printBtn.onclick = () => {
+        const printWindow = window.open('', '', 'width=800,height=600');
+        const printContent = `
+            <html>
+            <head>
+                <title>Activity Report - ${date}</title>
+                <style>
+                    body { font-family: Arial, sans-serif; text-align: center; }
+                    table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        margin-top: 20px;
+                    }
+                    th, td {
+                        border: 1px solid #333;
+                        padding: 8px;
+                        text-align: center;
+                    }
+                    th {
+                        background-color: #f2f2f2;
+                    }
+                </style>
+            </head>
+            <body>
+                <h2>Activity Report - ${date}</h2>
+                ${document.getElementById("activityPrintSection").innerHTML}
+            </body>
+            </html>
+        `;
+    
+        printWindow.document.open();
+        printWindow.document.write(printContent);
+        printWindow.document.close();
+        printWindow.focus();
+        printWindow.print();
+        printWindow.close();
+    };
+    
+
+    container.appendChild(wrapper);
+
+const printWrapper = document.createElement("div");
+printWrapper.style.textAlign = "center";
+printWrapper.style.marginTop = "15px";
+printWrapper.appendChild(printBtn);
+
+container.appendChild(printWrapper);
+
+}
+
+
+document.getElementById("prevActivityMonthBtn").addEventListener("click", () => {
+    currentActivityMonth--;
+    if (currentActivityMonth < 0) {
+        currentActivityMonth = 11;
+        currentActivityYear--;
+    }
+    updateActivityCalendar();
+});
+
+document.getElementById("nextActivityMonthBtn").addEventListener("click", () => {
+    currentActivityMonth++;
+    if (currentActivityMonth > 11) {
+        currentActivityMonth = 0;
+        currentActivityYear++;
+    }
+    updateActivityCalendar();
+});
+
+updateActivityCalendar();
+
     
 
     // Init
