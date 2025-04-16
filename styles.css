@@ -11,7 +11,6 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
-
 }
 
 .main-content {
@@ -80,6 +79,98 @@ button:hover {
     background: #218838;
 }
 
+.customer-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.customer-actions input,
+.customer-actions button {
+    flex: 1;
+    max-width: 150px;
+    padding: 8px;
+    font-size: 14px;
+}
+
+.activity-form form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.activity-form input,
+.activity-form button {
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+#activityCalendarWrapper {
+    margin-top: 20px;
+}
+
+#activityCalendar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+}
+
+#activityCalendar .calendar-date {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    border: 1px solid #ccc;
+    text-align: center;
+    cursor: pointer;
+}
+
+.activity-date {
+    background-color: #fce303;
+    font-weight: bold;
+}
+
+#activityTableContainer table {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+}
+
+#activityTableContainer th,
+#activityTableContainer td {
+    padding: 8px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+/* Center text for No Activities */
+.no-activity-message {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff0000;
+    margin-top: 20px;
+}
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #activityPrintSection, #activityPrintSection * {
+        visibility: visible;
+    }
+    #activityPrintSection {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+}
 
 /* Paragraph Text */
 p {
@@ -294,6 +385,7 @@ form input, form select, form button {
 @media (max-width: 768px) {
     .main-content {
         flex-direction: column;
+        padding: 10px;
     }
 
     .left-section,
@@ -316,5 +408,10 @@ form input, form select, form button {
 
     h1, h2 {
         font-size: 18px;
+    }
+
+    .customer-actions input,
+    .customer-actions button {
+        max-width: 100%;
     }
 }
