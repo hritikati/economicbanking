@@ -23,7 +23,9 @@
                 </form>
 
                 <h2>Saved Details</h2>
-                <table id="detailsList">
+                
+                
+                    <table id="detailsList">
                     <thead>
                         <tr>
                             <th>Field Name</th>
@@ -33,6 +35,11 @@
                     </thead>
                     <tbody></tbody>
                 </table>
+                <div style="text-align: center; margin-top: 20px;">
+                    <button id="printDetailsBtn">Print Saved Details</button>
+                </div>
+                
+                
                 
 
                 <h2>Edit Field</h2>
@@ -53,6 +60,14 @@
     <input type="text" id="eventDescription" placeholder="Event Description" required>
     <button type="submit">Add Event</button>
 </form>
+<h2 style="text-align:center;">Activity Log</h2>
+<div id="companyActivityTableContainer"></div>
+<div style="text-align: center; margin-top: 20px;">
+    <button id="printActivityLogBtn">Print Activity Log</button>
+</div>
+
+
+
 
 <h2>Scheduled Events</h2>
 <ul id="eventList"></ul>
@@ -66,6 +81,8 @@
 </div>
 
     <script src="details.js"></script>
+    
+
     <footer>
         Rohit Kumar<br>
 Manager & Nodal Officer Ecosystem Banking.
