@@ -415,3 +415,17 @@ form input, form select, form button {
         max-width: 100%;
     }
 }
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #printSection, #printSection * {
+        visibility: visible;
+    }
+    #printSection {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+}
